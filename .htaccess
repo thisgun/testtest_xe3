@@ -1,0 +1,45 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+    # Deny hidden files(.*)
+    RedirectMatch 403 ^/\.(.*)
+
+    ##
+    ## You may need to uncomment the following line for some hosting environments,
+    ## if you have installed to a subdirectory, enter the name here also.
+    ##
+    # RewriteBase /
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^index.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^web_installer/index.php - [L]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^web_installer web_installer/index.php [L]
+
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule \.php$ index.php [L]
+
+    # Allow
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^assets/.* - [L]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^plugins/.* - [L]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^storage/app/public/.* - [L]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^favicon.*$ - [L]
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^robots.txt$ - [L]
+
+    # Standard routes
+    RewriteRule ^ index.php [L]
+</IfModule>

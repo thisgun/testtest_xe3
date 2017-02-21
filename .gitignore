@@ -1,0 +1,16 @@
+composer.lock
+yarn.lock
+composer.user.json
+/vendor
+!/assets/vendor
+.env
+.idea/
+*.iml
+.DS_Store
+/plugins
+/node_modules
+/bower_components
+/assets/jspm_packages/*
+!/assets/jspm_packages/*.*
+assets/jspm_packages/.*
+*.map
